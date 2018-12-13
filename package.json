@@ -1,0 +1,24 @@
+{
+  "name": "updated-large-aggrid-data-update-test-random-delete",
+  "version": "1.0.0",
+  "description": "",
+  "keywords": [],
+  "main": "src/index.js",
+  "dependencies": {
+    "ag-grid-community": "19.1.4",
+    "ag-grid-enterprise": "19.1.4",
+    "ag-grid-react": "19.1.2",
+    "lodash": "4.17.10",
+    "react": "16.3.2",
+    "react-bootstrap": "0.32.1",
+    "react-dom": "16.3.2",
+    "react-scripts": "1.1.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}
