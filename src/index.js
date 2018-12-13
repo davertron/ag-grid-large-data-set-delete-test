@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { AgGridReact } from 'ag-grid-react';
+import {AgGridReact} from 'ag-grid-react';
 import 'ag-grid-enterprise';
 import _ from 'lodash';
 
-import { Button, ButtonToolbar } from 'react-bootstrap';
+import {Button, ButtonToolbar} from 'react-bootstrap';
 
 import './styles.css';
 
@@ -49,7 +49,7 @@ const columnDefs = [
 
 const autoGroupColumnDef = {
   pinned: 'left',
-  valueGetter: ({ node, data }) => {
+  valueGetter: ({node, data}) => {
     if (!node.group) {
       return data.dataGroup;
     }
@@ -95,8 +95,7 @@ class App extends React.Component {
 
   handleDelete = e => {
     e.preventDefault();
-    let start = Date.now();
-    let { data } = this.state;
+    let {data} = this.state;
 
     let random = Math.floor(Math.random() * data.length);
     let newData = [...data];
@@ -108,12 +107,12 @@ class App extends React.Component {
   };
 
   render() {
-    let { data, indexUpdated, newValue } = this.state;
+    let {data, indexUpdated, newValue} = this.state;
 
     return (
       <div className="ag-theme-balham">
         <h1>Large Data Update Test</h1>
-        <ButtonToolbar style={{ margin: '8px 2px' }}>
+        <ButtonToolbar style={{margin: '8px 2px'}}>
           <Button bsStyle="primary" bsSize="small" onClick={this.handleUpdate}>
             Random Update
           </Button>
