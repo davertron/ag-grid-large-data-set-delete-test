@@ -1,12 +1,12 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import {AgGridReact} from 'ag-grid-react';
-import 'ag-grid-enterprise';
-import _ from 'lodash';
+import React from "react";
+import ReactDOM from "react-dom";
+import { AgGridReact } from "ag-grid-react";
+import "ag-grid-enterprise";
+import _ from "lodash";
 
-import {Button, ButtonToolbar} from 'react-bootstrap';
+import { Button, ButtonToolbar } from "react-bootstrap";
 
-import './styles.css';
+import "./styles.css";
 
 let data = [];
 let nextGroup = 0;
@@ -18,7 +18,7 @@ for (let i = 0; i < 100000; i++) {
     id: i,
     name: `Thing ${i}`,
     dataGroup: `group-${nextGroup}`,
-    value: _.random(5000),
+    value: _.random(5000)
   });
 }
 
@@ -26,44 +26,44 @@ const getRowNodeId = n => `${n.id}-${n.dataGroup}`;
 
 const columnDefs = [
   {
-    field: 'dataGroup',
+    field: "dataGroup",
     enableRowGroup: true,
     rowGroup: true,
-    hide: true,
+    hide: true
   },
   {
-    field: 'id',
-    headerName: 'ID',
-    filter: 'agTextColumnFilter',
+    field: "id",
+    headerName: "ID",
+    filter: "agTextColumnFilter"
   },
   {
-    field: 'name',
-    headerName: 'Name',
-    filter: 'agTextColumnFilter',
+    field: "name",
+    headerName: "Name",
+    filter: "agTextColumnFilter"
   },
   {
-    field: 'value',
-    headerName: 'Value',
-  },
+    field: "value",
+    headerName: "Value"
+  }
 ];
 
 const autoGroupColumnDef = {
-  pinned: 'left',
-  valueGetter: ({node, data}) => {
+  pinned: "left",
+  valueGetter: ({ node, data }) => {
     if (!node.group) {
       return data.dataGroup;
     }
 
-    return '';
-  },
+    return "";
+  }
 };
 
 function getContextMenuItems(params) {
-  return params.defaultItems.filter(item => item !== 'toolPanel');
+  return params.defaultItems.filter(item => item !== "toolPanel");
 }
 
 function getMainMenuItems(params) {
-  return params.defaultItems.filter(item => item !== 'toolPanel');
+  return params.defaultItems.filter(item => item !== "toolPanel");
 }
 
 class App extends React.Component {
@@ -74,7 +74,7 @@ class App extends React.Component {
       data,
       indexUpdated: null,
       newValue: null,
-      selected: [],
+      selected: []
     };
   }
 
@@ -89,30 +89,30 @@ class App extends React.Component {
     this.setState({
       indexUpdated,
       newValue,
-      data: newData,
+      data: newData
     });
   };
 
   handleDelete = e => {
     e.preventDefault();
-    let {data} = this.state;
+    let { data } = this.state;
 
     let random = Math.floor(Math.random() * data.length);
     let newData = [...data];
     newData.splice(random, 1);
 
     this.setState({
-      data: newData,
+      data: newData
     });
   };
 
   render() {
-    let {data, indexUpdated, newValue} = this.state;
+    let { data, indexUpdated, newValue } = this.state;
 
     return (
       <div className="ag-theme-balham">
         <h1>Large Data Update Test</h1>
-        <ButtonToolbar style={{margin: '8px 2px'}}>
+        <ButtonToolbar style={{ margin: "8px 2px" }}>
           <Button bsStyle="primary" bsSize="small" onClick={this.handleUpdate}>
             Random Update
           </Button>
@@ -123,6 +123,7 @@ class App extends React.Component {
         {newValue &&
           indexUpdated &&
           `Updated value at index ${indexUpdated} to ${newValue}`}
+        <span>Total number of rows: {data.length}</span>
         <AgGridReact
           autoGroupColumnDef={autoGroupColumnDef} // Allows us to fiddle with the auto group column info, i.e. to pin it etc.
           columnDefs={columnDefs}
@@ -135,7 +136,7 @@ class App extends React.Component {
           getRowNodeId={getRowNodeId}
           gridOptions={{
             accentedSort: true,
-            headerHeight: 30,
+            headerHeight: 30
           }}
           rowData={data}
           rowHeight="35"
@@ -147,5 +148,5 @@ class App extends React.Component {
   }
 }
 
-const rootElement = document.getElementById('root');
+const rootElement = document.getElementById("root");
 ReactDOM.render(<App />, rootElement);
